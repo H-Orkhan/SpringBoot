@@ -1,6 +1,5 @@
 package Step4;
 
-import Step3.Topic;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
