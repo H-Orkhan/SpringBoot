@@ -7,9 +7,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 public class SpringApp extends SpringBootServletInitializer {
-
-    //We need to extend the class SpringBootServletInitializer
-    //to support WAR file deployment.
     @Override
     protected SpringApplicationBuilder configure (
             SpringApplicationBuilder applicationBuilder) {

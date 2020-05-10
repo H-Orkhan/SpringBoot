@@ -13,8 +13,6 @@ public class Topic {
         return name;
     }
 
-
-
     public String getDescription() {
         return description;
     }

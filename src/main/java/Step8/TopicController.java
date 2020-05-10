@@ -7,6 +7,7 @@ import java.util.List;
 
 @RestController
 public class TopicController {
+
     @Autowired
     private TopicService topicService;
 
@@ -20,8 +21,6 @@ public class TopicController {
         return topicService.getAllTopics();
     }
 
-    //We use @RequestMapping with ID to check and choose the ID that we need
-    //We use @PathVariable for help String to understand what variable does it need
     @GetMapping("/topics/{id}")
     public Topic getTopicByID(@PathVariable String id) {
         return  topicService.getTopicByID(id);
@@ -36,10 +35,10 @@ public class TopicController {
     public void updateTopic(@RequestBody Topic topic, @PathVariable String id) {
         topicService.updateTopic(id,topic);
     }
+
     @DeleteMapping("/topics/{id}")
     public void deleteTopic(@RequestBody Topic topic, @PathVariable String id) {
         topicService.deleteTopicByID(id);
     }
-
 
 }

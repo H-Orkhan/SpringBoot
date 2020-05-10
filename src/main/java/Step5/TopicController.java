@@ -19,8 +19,6 @@ public class TopicController {
         return topicService.getAllTopics();
     }
 
-    //We use @RequestMapping with ID to check and choose the ID that we need
-    //We use @PathVariable for help String to understand what variable does it need
     @RequestMapping("/topics/{id}")
     public Topic getTopicByID(@PathVariable String id) {
         return  topicService.getTopicByID(id);

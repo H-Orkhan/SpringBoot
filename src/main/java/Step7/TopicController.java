@@ -16,8 +16,6 @@ public class TopicController {
         return topicService.getAllTopics();
     }
 
-    //We use @RequestMapping with ID to check and choose the ID that we need
-    //We use @PathVariable for help String to understand what variable does it need
     @RequestMapping(method = RequestMethod.GET,value = "/topics/{id}")
     public Topic getTopicByID(@PathVariable String id) {
         return  topicService.getTopicByID(id);
@@ -33,7 +31,7 @@ public class TopicController {
         topicService.updateTopic(id,topic);
     }
     @RequestMapping(method = RequestMethod.DELETE,value = "/topics/{id}")
-        public void deleteTopic(@RequestBody Topic topic,@PathVariable String id) {
+    public void deleteTopic(@RequestBody Topic topic,@PathVariable String id) {
         topicService.deleteTopicByID(id);
     }
 }
