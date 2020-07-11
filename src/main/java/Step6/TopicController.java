@@ -10,18 +10,17 @@ public class TopicController {
     @Autowired
     private TopicService topicService;
 
-    @RequestMapping(method = RequestMethod.GET,value = "/topics")
-    @ResponseBody
+    @GetMapping("/topics")
     public  List<Topic> getAllTopics () {
         return topicService.getAllTopics();
     }
 
-    @RequestMapping(method = RequestMethod.GET,value = "/topics/{id}")
+    @GetMapping("/topics/{id}")
     public Topic getTopicByID(@PathVariable String id) {
         return  topicService.getTopicByID(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST,value = "/topics")
+    @PostMapping("/topics/add")
     public void addTopic(@RequestBody Topic topic) {
             topicService.addTopic(topic);
     }

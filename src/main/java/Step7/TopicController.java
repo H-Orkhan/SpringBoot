@@ -7,30 +7,31 @@ import java.util.List;
 
 @RestController
 public class TopicController {
+
     @Autowired
     private TopicService topicService;
 
-    @RequestMapping(method = RequestMethod.GET,value = "/topics")
-    @ResponseBody
+    @GetMapping("/topics")
     public  List<Topic> getAllTopics () {
         return topicService.getAllTopics();
     }
 
-    @RequestMapping(method = RequestMethod.GET,value = "/topics/{id}")
+    @GetMapping("/topics/{id}")
     public Topic getTopicByID(@PathVariable String id) {
         return  topicService.getTopicByID(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST,value = "/topics")
+    @PostMapping ("/topics/add")
     public void addTopic(@RequestBody Topic topic) {
             topicService.addTopic(topic);
     }
 
-    @RequestMapping(method = RequestMethod.PUT,value = "/topics/{id}")
+    @PutMapping("/topics/{id}")
     public void updateTopic(@RequestBody Topic topic,@PathVariable String id) {
         topicService.updateTopic(id,topic);
     }
-    @RequestMapping(method = RequestMethod.DELETE,value = "/topics/{id}")
+
+    @DeleteMapping("/topics/{id}")
     public void deleteTopic(@RequestBody Topic topic,@PathVariable String id) {
         topicService.deleteTopicByID(id);
     }
