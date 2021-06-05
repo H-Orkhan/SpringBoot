@@ -1,39 +1,38 @@
 package Step8;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javassist.NotFoundException;
+import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class TopicService {
-
-    @Autowired
-    private TopicRepo topicRepo;
+    private final TopicRepo topicRepo;
 
     public List<Topic> getAllTopics() {
-        List<Topic>topics=new ArrayList<>();
-        topicRepo.findAll().forEach(topics::add);
-        return topics;
+        return topicRepo.findAll();
     }
 
-    public Topic getTopicByID(String id) {
-        Optional<Topic> optionalTopic = topicRepo.findById(id);
-      return optionalTopic.orElseGet(Topic::new);
+    @SneakyThrows
+    public Topic getTopicByID(int id) {
+        return topicRepo.findById(id).orElseThrow(() -> new NotFoundException("Topic not found"));
     }
 
     public void addTopic(Collection<Topic> topics) {
         topicRepo.saveAll(topics);
     }
 
-    public void updateTopic(String id, Topic topic) {
+    @SneakyThrows
+    public void updateTopic(int id, Topic topic) {
+        topic.setId(id);
         topicRepo.save(topic);
     }
 
-    public void deleteTopicByID(String id) {
+    public void deleteTopicByID(int id) {
         topicRepo.deleteById(id);
     }
 

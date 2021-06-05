@@ -1,14 +1,17 @@
 package Step6;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/app")
+@RequiredArgsConstructor
 public class TopicController {
-    @Autowired
-    private TopicService topicService;
+
+    private final TopicService topicService;
 
     @GetMapping("/topics")
     public  List<Topic> getAllTopics () {
@@ -16,7 +19,7 @@ public class TopicController {
     }
 
     @GetMapping("/topics/{id}")
-    public Topic getTopicByID(@PathVariable String id) {
+    public Topic getTopicByID(@PathVariable int id) {
         return  topicService.getTopicByID(id);
     }
 

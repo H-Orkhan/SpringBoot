@@ -1,5 +1,6 @@
 package Step8;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface TopicRepo extends CrudRepository<Topic,String> { }
+public interface TopicRepo extends JpaRepository<Topic, Integer> {
+}

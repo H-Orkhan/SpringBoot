@@ -1,15 +1,16 @@
 package Step8;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/app")
+@RequiredArgsConstructor
 public class TopicController {
 
-    @Autowired
-    private TopicService topicService;
+    private final TopicService topicService;
 
     @GetMapping("/")
     public String showHello() {
@@ -17,27 +18,27 @@ public class TopicController {
     }
 
     @GetMapping("/topics")
-    public  List<Topic> getAllTopics () {
+    public List<Topic> getAllTopics() {
         return topicService.getAllTopics();
     }
 
-    @GetMapping("/topics/{id}")
-    public Topic getTopicByID(@PathVariable String id) {
-        return  topicService.getTopicByID(id);
+    @GetMapping("/topics/get/{id}")
+    public Topic getTopicByID(@PathVariable int id) {
+        return topicService.getTopicByID(id);
     }
 
-    @PostMapping("/topics")
+    @PostMapping("/topics/add")
     public void addTopic(@RequestBody List<Topic> topics) {
-            topicService.addTopic(topics);
+        topicService.addTopic(topics);
     }
 
-    @PutMapping("/topics/{id}")
-    public void updateTopic(@RequestBody Topic topic, @PathVariable String id) {
-        topicService.updateTopic(id,topic);
+    @PutMapping("/topics/update/{id}")
+    public void updateTopic(@RequestBody Topic topic, @PathVariable int id) {
+        topicService.updateTopic(id, topic);
     }
 
-    @DeleteMapping("/topics/{id}")
-    public void deleteTopic(@RequestBody Topic topic, @PathVariable String id) {
+    @DeleteMapping("/topics/delete/{id}")
+    public void deleteTopic(@PathVariable int id) {
         topicService.deleteTopicByID(id);
     }
 
